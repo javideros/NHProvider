@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping assembly="NHProvider.Model" namespace="nhprovider.model" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="AspnetPersonalizationPerUser" table="aspnet_PersonalizationPerUser">
+    <id name="Id" type="Guid">
+      <column name="Id" default="newid()" not-null="true" sql-type="uniqueidentifier" />
+      <generator class="guid.comb" />
+    </id>
+    <property name="PageSettings" type="BinaryBlob">
+      <column name="PageSettings" not-null="true" length="2147483647" sql-type="image" />
+    </property>
+    <property name="LastUpdatedDate" type="DateTime">
+      <column name="LastUpdatedDate" not-null="true" sql-type="datetime" />
+    </property>
+    <many-to-one name="AspnetPath" class="AspnetPath">
+      <column name="PathId" not-null="false" sql-type="uniqueidentifier" />
+    </many-to-one>
+    <many-to-one name="AspnetUser" class="AspnetUser">
+      <column name="UserId" not-null="false" sql-type="uniqueidentifier" />
+    </many-to-one>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>Javier de Ros</authors>
+    <owners>Javier de Ros</owners>
+    <licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>
+    <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl>
+    <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Data contracts (interfaces) and NHibernate implementations for the NHProvider providers.</description>
+    <summary>Data contracts (interfaces) and NHibernate implementations for the NHProvider providers.</summary>
+    <language>en-US</language>
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <copyright>Copyright 2013</copyright>
+    <tags>NHibernate Membership Role Profile Spring .NET Service</tags>
+  </metadata>
+</package>

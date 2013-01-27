@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping assembly="NHProvider.Model" namespace="nhprovider.model" xmlns="urn:nhibernate-mapping-2.2">
+    <class name="AspnetPath" table='aspnet_Paths'>
+      <id name="PathId" type="Guid">
+        <column name="PathId" default="newid()" not-null="true" sql-type="uniqueidentifier" />
+        <generator class="guid.comb" />
+      </id>
+      <property name="Path" type="String">
+        <column name="Path" not-null="true" length="256" sql-type="nvarchar" />
+      </property>
+      <property name="LoweredPath" type="String">
+        <column name="LoweredPath" not-null="true" length="256" sql-type="nvarchar" />
+      </property>
+      <many-to-one name="AspnetApplication" class="AspnetApplication">
+        <column name="ApplicationId" not-null="true" sql-type="uniqueidentifier" />
+      </many-to-one>
+      <bag name="AspnetPersonalizationPerUsers" inverse="true" generic="true">
+        <key>
+          <column name="PathId" />
+        </key>
+        <one-to-many class="AspnetPersonalizationPerUser" />
+      </bag>
+    </class>
+</hibernate-mapping>

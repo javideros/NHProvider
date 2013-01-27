@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping assembly="NHProvider.Model" namespace="nhprovider.model" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="AspnetRole" table="aspnet_Roles">
+    <id name="RoleId" type="Guid">
+      <column name="RoleId" default="newid()" not-null="true" sql-type="uniqueidentifier" />
+      <generator class="guid.comb" />
+    </id>
+    <property name="RoleName" type="String">
+      <column name="RoleName" not-null="true" length="256" sql-type="nvarchar" />
+    </property>
+    <property name="LoweredRoleName" type="String">
+      <column name="LoweredRoleName" not-null="true" length="256" sql-type="nvarchar" />
+    </property>
+    <property name="Description" type="String">
+      <column name="Description" not-null="false" length="256" sql-type="nvarchar" />
+    </property>
+    <many-to-one name="AspnetApplication" class="AspnetApplication">
+      <column name="ApplicationId" not-null="true" sql-type="uniqueidentifier" />
+    </many-to-one>
+    <bag name="AspnetUsers" table="aspnet_UsersInRoles" inverse="true" generic="true" lazy="false">
+      <key>
+        <column name="RoleId" />
+      </key>
+      <many-to-many class="AspnetUser" fetch="join">
+        <column name="UserId" />
+      </many-to-many>
+    </bag>
+  </class>
+</hibernate-mapping>

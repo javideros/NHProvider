@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping assembly="NHProvider.Model" namespace="nhprovider.model" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="AspnetSchemaVersion" table="aspnet_SchemaVersions">
+    <composite-id>
+      <key-property name="Feature" type="String">
+        <column name="Feature" not-null="true" length="128" sql-type="nvarchar" />
+      </key-property>
+      <key-property name="CompatibleSchemaVersion" type="String">
+        <column name="CompatibleSchemaVersion" not-null="true" length="128" sql-type="nvarchar" />
+      </key-property>
+    </composite-id>
+    <property name="IsCurrentVersion" type="Boolean">
+      <column name="IsCurrentVersion" not-null="true" sql-type="bit" />
+    </property>
+  </class>
+</hibernate-mapping>

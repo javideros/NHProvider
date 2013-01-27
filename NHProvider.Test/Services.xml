@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net">
+
+  <description>
+    Configuration of Services
+  </description>
+  
+  <object id="IApplicationService" type="nhprovider.service.impl.ApplicationService, NHProvider.Service">
+    <property name="ApplicationDao" ref="IApplicationDao"/>
+  </object>
+
+  <object id="IUserService" type="nhprovider.service.impl.UserService, NHProvider.Service">
+    <property name="UserDao" ref="IUserDao"/>
+  </object>
+
+  <object id="IRoleService" type="nhprovider.service.impl.RoleService, NHProvider.Service">
+    <property name="RoleDao" ref="IRoleDao"/>
+  </object>
+
+  <object id="IProfileService" type="nhprovider.service.impl.ProfileService, NHProvider.Service">
+    <property name="ProfileDao" ref="IProfileDao"/>
+  </object>
+
+  <object id="ILogOnErrorDetailService" type="nhprovider.service.impl.LogOnErrorDetailService, NHProvider.Service">
+    <property name="LogOnErrorDetailDao" ref="ILogOnErrorDetailDao"/>
+  </object>
+
+  <object id="IApplicationUserService" type="nhprovider.service.impl.ApplicationUserService, NHProvider.Service">
+    <property name="ApplicationUserDao" ref="IApplicationUserDao"/>
+  </object>
+
+  <object id="IApplicationRoleService" type="nhprovider.service.impl.ApplicationRoleService, NHProvider.Service">
+    <property name="ApplicationRoleDao" ref="IApplicationRoleDao"/>
+  </object>
+
+  <object id="IApplicationUserRoleService" type="nhprovider.service.impl.ApplicationUserRoleService, NHProvider.Service">
+    <property name="ApplicationUserRoleDao" ref="IApplicationUserRoleDao"/>
+  </object>
+  
+  <import resource="DeclarativeServicesTxProxyFactoryDriven.xml"/>
+
+</objects>
+

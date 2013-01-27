@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net"
+         xmlns:db="http://www.springframework.net/database">
+
+  
+  <object type="Spring.Objects.Factory.Config.PropertyPlaceholderConfigurer, Spring.Core">
+    <property name="ConfigSections" value="databaseSettings"/>
+  </object>
+
+  
+  <db:provider id="DbProvider"
+                   provider="SqlServer-2.0"
+                   connectionString="Integrated Security=true; Data Source=${db.datasource};Database=${db.database};"/>
+
+  <object id="SessionFactory" type="Spring.Data.NHibernate.LocalSessionFactoryObject, Spring.Data.NHibernate32">
+    
+    <property name="DbProvider" ref="DbProvider"/>
+    
+    <property name="MappingAssemblies">
+      <list>
+        <value>NHProvider.Model</value>
+      </list>
+    </property>
+    
+    <property name="HibernateProperties">
+      <dictionary>
+
+        <entry key="hibernate.connection.provider"
+               value="NHibernate.Connection.DriverConnectionProvider"/>
+
+        <entry key="hibernate.dialect"
+               value="NHibernate.Dialect.MsSql2005Dialect"/>
+
+        <entry key="hibernate.connection.driver_class"
+               value="NHibernate.Driver.SqlClientDriver"/>
+
+        <entry key="hibernate.hbm2ddl.auto" value="create-drop" />
+        
+      </dictionary>
+      
+    </property>
+
+  </object>
+
+  <object id="HibernateTransactionManager"
+        type="Spring.Data.NHibernate.HibernateTransactionManager, Spring.Data.NHibernate32">
+
+    <property name="DbProvider" ref="DbProvider"/>
+    <property name="SessionFactory" ref="SessionFactory"/>
+
+  </object>
+
+  <object id="HibernateTemplate" type="Spring.Data.NHibernate.Generic.HibernateTemplate">
+    <property name="SessionFactory" ref="SessionFactory" />
+    <property name="TemplateFlushMode" value="Auto" />
+    <property name="CacheQueries" value="true"/>
+  </object>
+
+  
+  <object id="IApplicationDao" 
+          type="nhprovider.data.impl.ApplicationDao, NHProvider.Data">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+
+  <object id="IApplicationRoleDao"
+        type="nhprovider.data.impl.ApplicationRoleDao, NHProvider.Data">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+
+  <object id="IApplicationUserDao"
+      type="nhprovider.data.impl.ApplicationUserDao, NHProvider.Data">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+
+  <object id="IApplicationUserRoleDao"
+    type="nhprovider.data.impl.ApplicationUserDao, NHProvider.Data">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+
+  <object id="ILogOnErrorDetailDao"
+  type="nhprovider.data.impl.LogOnErrorDetailDao, NHProvider.Data">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+
+  <object id="IProfileDao"
+  type="nhprovider.data.impl.ProfileDao, NHProvider.Data">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+
+  <object id="IUserDao"
+  type="nhprovider.data.impl.UserDao, NHProvider.Data">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+
+  <object id="IRoleDao"
+  type="nhprovider.data.impl.RoleDao, NHProvider.Data">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+
+</objects>
+

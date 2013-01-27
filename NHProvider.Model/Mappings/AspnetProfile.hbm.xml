@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping assembly="NHProvider.Model" namespace="nhprovider.model" xmlns="urn:nhibernate-mapping-2.2">
+  <joined-subclass name="AspnetProfile" table="aspnet_Profile" extends="AspnetUser">
+    <key>
+      <column name="UserId" not-null="true" sql-type="uniqueidentifier" />
+    </key>
+    <property name="PropertyNames" type="StringClob">
+      <column name="PropertyNames" not-null="true" length="1073741823" sql-type="ntext" />
+    </property>
+    <property name="PropertyValuesString" type="StringClob">
+      <column name="PropertyValuesString" not-null="true" length="1073741823" sql-type="ntext" />
+    </property>
+    <property name="PropertyValuesBinary" type="BinaryBlob">
+      <column name="PropertyValuesBinary" not-null="true" length="2147483647" sql-type="image" />
+    </property>
+    <property name="LastUpdatedDate" type="DateTime">
+      <column name="LastUpdatedDate" not-null="true" sql-type="datetime" />
+    </property>
+  </joined-subclass>
+</hibernate-mapping>

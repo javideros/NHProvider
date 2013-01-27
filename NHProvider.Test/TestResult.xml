@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\Users\Javi\Documents\Visual Studio 2010\Projects\IndraWebProjects\nhibernate-provider-dao\NHProvider.Test\NHProvider.nunit" total="1" failures="0" not-run="0" date="2007-11-17" time="10:11:04">
+  <environment nunit-version="2.4.1.0" clr-version="2.0.50727.832" os-version="Microsoft Windows NT 5.1.2600 Service Pack 2" platform="Win32NT" cwd="C:\Users\Javi\Documents\Visual Studio 2010\Projects\IndraWebProjects\nhibernate-provider-dao\NHProvider.Test" machine-name="JAVI-VAIO" user="Javi" user-domain="WORKGROUP" />
+  <culture-info current-culture="es-ES" current-uiculture="es-ES" />
+  <test-suite name="C:\Users\Javi\Documents\Visual Studio 2010\Projects\IndraWebProjects\nhibernate-provider-dao\NHProvider.Test\NHProvider.nunit" success="True" time="7.281" asserts="0">
+    <results>
+      <test-suite name="C:\Users\Javi\Documents\Visual Studio 2010\Projects\IndraWebProjects\nhibernate-provider-dao\NHProvider.Test\bin\Debug\NHProvider.Test.dll" success="True" time="7.281" asserts="0">
+        <results>
+          <test-suite name="NHProvider" success="True" time="7.281" asserts="0">
+            <results>
+              <test-suite name="Test" success="True" time="7.281" asserts="0">
+                <results>
+                  <test-suite name="ApplicationFixture" success="True" time="7.249" asserts="0">
+                    <results>
+                      <test-case name="NHProvider.Test.ApplicationFixture.CreateApplication" executed="True" success="True" time="7.249" asserts="2" />
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

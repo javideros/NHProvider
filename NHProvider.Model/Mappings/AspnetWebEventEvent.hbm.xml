@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping assembly="NHProvider.Model" namespace="nhprovider.model" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="AspnetWebEventEvent" table="aspnet_WebEvent_Events">
+    <id name="EventId" type="String">
+      <column name="EventId" not-null="true" length="32" sql-type="char" />
+      <generator class='uuid.hex'/>
+    </id>
+    <property name="EventTimeUtc" type="DateTime">
+      <column name="EventTimeUtc" not-null="true" sql-type="datetime" />
+    </property>
+    <property name="EventTime" type="DateTime">
+      <column name="EventTime" not-null="true" sql-type="datetime" />
+    </property>
+    <property name="EventType" type="String">
+      <column name="EventType" not-null="true" length="256" sql-type="nvarchar" />
+    </property>
+    <property name="EventSequence" type="Decimal">
+      <column name="EventSequence" not-null="true" precision="19" scale="0" sql-type="decimal" />
+    </property>
+    <property name="EventOccurrence" type="Decimal">
+      <column name="EventOccurrence" not-null="true" precision="19" scale="0" sql-type="decimal" />
+    </property>
+    <property name="EventCode" type="Int32">
+      <column name="EventCode" not-null="true" precision="10" scale="0" sql-type="int" />
+    </property>
+    <property name="EventDetailCode" type="Int32">
+      <column name="EventDetailCode" not-null="true" precision="10" scale="0" sql-type="int" />
+    </property>
+    <property name="Message" type="String">
+      <column name="Message" not-null="false" length="1024" sql-type="nvarchar" />
+    </property>
+    <property name="ApplicationPath" type="String">
+      <column name="ApplicationPath" not-null="false" length="256" sql-type="nvarchar" />
+    </property>
+    <property name="ApplicationVirtualPath" type="String">
+      <column name="ApplicationVirtualPath" not-null="false" length="256" sql-type="nvarchar" />
+    </property>
+    <property name="MachineName" type="String">
+      <column name="MachineName" not-null="true" length="256" sql-type="nvarchar" />
+    </property>
+    <property name="RequestUrl" type="String">
+      <column name="RequestUrl" not-null="false" length="1024" sql-type="nvarchar" />
+    </property>
+    <property name="ExceptionType" type="String">
+      <column name="ExceptionType" not-null="false" length="256" sql-type="nvarchar" />
+    </property>
+    <property name="Details" type="StringClob">
+      <column name="Details" not-null="false" length="1073741823" sql-type="ntext" />
+    </property>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping assembly="NHProvider.Model" namespace="nhprovider.model" xmlns="urn:nhibernate-mapping-2.2">
+  <joined-subclass name="AspnetMembership" table='aspnet_Membership' extends="AspnetUser">
+    <key>
+      <column name="UserId" not-null="true" sql-type="uniqueidentifier" />
+    </key>
+    <property name="Password" type="String">
+      <column name="Password" not-null="true" length="128" sql-type="nvarchar" />
+    </property>
+    <property name="PasswordFormat" type="Int32">
+      <column name="PasswordFormat" default="0" not-null="true" precision="10" scale="0" sql-type="int" />
+    </property>
+    <property name="PasswordSalt" type="String">
+      <column name="PasswordSalt" not-null="true" length="128" sql-type="nvarchar" />
+    </property>
+    <property name="MobilePIN" type="String">
+      <column name="MobilePIN" not-null="false" length="16" sql-type="nvarchar" />
+    </property>
+    <property name="Email" type="String">
+      <column name="Email" not-null="false" length="256" sql-type="nvarchar" />
+    </property>
+    <property name="LoweredEmail" type="String">
+      <column name="LoweredEmail" not-null="false" length="256" sql-type="nvarchar" />
+    </property>
+    <property name="PasswordQuestion" type="String">
+      <column name="PasswordQuestion" not-null="false" length="256" sql-type="nvarchar" />
+    </property>
+    <property name="PasswordAnswer" type="String">
+      <column name="PasswordAnswer" not-null="false" length="128" sql-type="nvarchar" />
+    </property>
+    <property name="IsApproved" type="Boolean">
+      <column name="IsApproved" not-null="true" sql-type="bit" />
+    </property>
+    <property name="IsLockedOut" type="Boolean">
+      <column name="IsLockedOut" not-null="true" sql-type="bit" />
+    </property>
+    <property name="CreateDate" type="DateTime">
+      <column name="CreateDate" not-null="true" sql-type="datetime" />
+    </property>
+    <property name="LastLoginDate" type="DateTime">
+      <column name="LastLoginDate" not-null="true" sql-type="datetime" />
+    </property>
+    <property name="LastPasswordChangedDate" type="DateTime">
+      <column name="LastPasswordChangedDate" not-null="true" sql-type="datetime" />
+    </property>
+    <property name="LastLockoutDate" type="DateTime">
+      <column name="LastLockoutDate" not-null="true" sql-type="datetime" />
+    </property>
+    <property name="FailedPasswordAttemptCount" type="Int32">
+      <column name="FailedPasswordAttemptCount" not-null="true" precision="10" scale="0" sql-type="int" />
+    </property>
+    <property name="FailedPasswordAttemptWindowStart" type="DateTime">
+      <column name="FailedPasswordAttemptWindowStart" not-null="true" sql-type="datetime" />
+    </property>
+    <property name="FailedPasswordAnswerAttemptCount" type="Int32">
+      <column name="FailedPasswordAnswerAttemptCount" not-null="true" precision="10" scale="0" sql-type="int" />
+    </property>
+    <property name="FailedPasswordAnswerAttemptWindowStart" type="DateTime">
+      <column name="FailedPasswordAnswerAttemptWindowStart" not-null="true" sql-type="datetime" />
+    </property>
+    <property name="Comment" type="StringClob">
+      <column name="Comment" not-null="false" length="1073741823" sql-type="ntext" />
+    </property>
+    <many-to-one name="AspnetApplication" class="AspnetApplication">
+      <column name="ApplicationId" not-null="true" sql-type="uniqueidentifier" />
+    </many-to-one>
+  </joined-subclass>
+</hibernate-mapping>
