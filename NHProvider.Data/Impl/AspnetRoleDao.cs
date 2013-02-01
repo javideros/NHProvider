@@ -80,8 +80,9 @@ namespace nhprovider.data.impl
         {
             IList<AspnetRole> results;
 
-            IQuery query = CurrentSession.CreateQuery("select m from AspnetRole as m where m.AspnetApplication.ApplicationId = :applicationId");
+            IQuery query = CurrentSession.CreateQuery("select m from AspnetRole as m where m.RoleName = :roleName and m.AspnetApplication.ApplicationId = :applicationId");
             query.SetGuid("applicationId", applicationId);
+            query.SetString("roleName", roleName);
             results = query.List<AspnetRole>();
             return results;
         }

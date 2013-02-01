@@ -104,10 +104,23 @@ namespace NHProvider
             // Call the base class implementation.
             base.Initialize(name, config);
 
+
+            if (_aspnetMembershipService == null)
+            {
+                IApplicationContext context = ContextRegistry.GetContext();
+                _aspnetMembershipService = (IAspnetMembershipService)context.GetObject("IAspnetMembershipService");
+            }
+
             if (_aspnetApplicationService == null)
             {
                 IApplicationContext context = ContextRegistry.GetContext();
                 _aspnetApplicationService = (IAspnetApplicationService)context.GetObject("IAspnetApplicationService");
+            }
+
+            if (_aspnetRoleService == null)
+            {
+                IApplicationContext context = ContextRegistry.GetContext();
+                _aspnetRoleService = (IAspnetRoleService)context.GetObject("IAspnetRoleService");
             }
 
             string appName = ConfigurationUtil.GetConfigValue(config["applicationName"], System.Web.Hosting.HostingEnvironment.ApplicationVirtualPath);

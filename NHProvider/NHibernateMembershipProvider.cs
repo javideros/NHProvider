@@ -331,7 +331,7 @@ namespace NHProvider
             enablePasswordRetrieval = Convert.ToBoolean(ConfigurationUtil.GetConfigValue(config["enablePasswordRetrieval"], "true"));
             requiresQuestionAndAnswer = Convert.ToBoolean(ConfigurationUtil.GetConfigValue(config["requiresQuestionAndAnswer"], "false"));
             requiresUniqueEmail = Convert.ToBoolean(ConfigurationUtil.GetConfigValue(config["requiresUniqueEmail"], "true"));
-            SetPasswordFormat(config["passwordFormat"]);
+            SetPasswordFormat(ConfigurationUtil.GetConfigValue(config["passwordFormat"], "Hashed"));
             machineKey = GetMachineKeySection();
         }
 
@@ -753,7 +753,7 @@ namespace NHProvider
                 if (1 == users.Count)
                 {
                     AspnetMembership membership = _aspnetMembershipService.GetMembership((Guid)providerUserKey);
-                    user = ToMembershipUser(Name, users[0], membership);
+                    user = ToMembershipUser(Name, membership);
                         // ((AspnetUser)users[0]).ToMembershipUser(Name);
                 }
                 else if (1 < users.Count)
@@ -813,7 +813,7 @@ namespace NHProvider
                     Guid userId = users[0].UserId;
                     AspnetMembership membership = _aspnetMembershipService.GetMembership(userId);
                     if (membership != null)
-                        user = ToMembershipUser(Name, users[0], membership);
+                        user = ToMembershipUser(Name, membership);
                 }
                 else if (1 < users.Count)
                 {
@@ -848,7 +848,7 @@ namespace NHProvider
         private MembershipUser ToMembershipUser(string Name, AspnetMembership membership)
         {
              MembershipUser user = new MembershipUser(Name, membership.UserName, membership.UserId, membership.Email, membership.PasswordQuestion,
-                membership.PasswordAnswer,membership.IsApproved, membership.IsLockedOut, membership.CreateDate, membership.LastLoginDate,
+                membership.Comment, membership.IsApproved, membership.IsLockedOut, membership.CreateDate, membership.LastLoginDate,
                 membership.LastActivityDate, membership.LastPasswordChangedDate, membership.LastLockoutDate);
             return user;
         }
@@ -953,10 +953,10 @@ namespace NHProvider
             {
                 // Perform the search.
                 IList<AspnetMembership> page = _aspnetMembershipService.GetAllApplicationUsers(ApplicationName, pageIndex, pageSize, out totalRecords);
-                
-                foreach (AspnetUser appUser in page)
+
+                foreach (AspnetMembership appUser in page)
                 {
-                    users.Add(ToMembershipUser(Name, appUser, null));
+                    users.Add(ToMembershipUser(Name, appUser));
                 }
             }
             catch (Exception ex)
@@ -1008,7 +1008,7 @@ namespace NHProvider
                 IList<AspnetMembership> page = _aspnetMembershipService.GetMembershipByAppIdAndUserName(application, usernameToMatch.ToLower());
                 foreach (AspnetMembership appUser in page)
                 {
-                    users.Add(ToMembershipUser(Name, null, appUser));
+                    users.Add(ToMembershipUser(Name, appUser));
                 }
             }
             catch (Exception ex)
@@ -1061,7 +1061,7 @@ namespace NHProvider
                 IList<AspnetMembership> page = _aspnetMembershipService.GetMembershipsByAppIdAndUserEmail(application, emailToMatch.ToLowerInvariant());
                 foreach (AspnetMembership appUser in page)
                 {
-                    users.Add(ToMembershipUser(Name, null, appUser));// appUser.ToMembershipUser(Name));
+                    users.Add(ToMembershipUser(Name, appUser));// appUser.ToMembershipUser(Name));
                 }
             }
             catch (Exception ex)
